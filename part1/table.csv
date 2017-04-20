@@ -1,0 +1,15 @@
+﻿Table 1.
+        The physicochemical data statistics per wine type.
+Attribute (units),Red wine,White wine
+Min,Max,Mean,Min,Max,Mean
+Fixed acidity (g(tartaric acid)/dm3),4.6,15.9,8.3,3.8,14.2,6.9
+Volatile acidity (g(acetic acid)/dm3),0.1,1.6,0.5,0.1,1.1,0.3
+Citric acid (g/dm3),0.0,1.0,0.3,0.0,1.7,0.3
+Residual sugar (g/dm3),0.9,15.5,2.5,0.6,65.8,6.4
+Chlorides (g(sodium chloride)/dm3),0.01,0.61,0.08,0.01,0.35,0.05
+Free sulfur dioxide (mg/dm3),1,72,14,2,289,35
+Total sulfur dioxide (mg/dm3),6,289,46,9,440,138
+Density (g/cm3),0.990,1.004,0.996,0.987,1.039,0.994
+pH,2.7,4.0,3.3,2.7,3.8,3.1
+Sulphates (g(potassium sulphate)/dm3),0.3,2.0,0.7,0.2,1.1,0.5
+Alcohol (vol.%),8.4,14.9,10.4,8.0,14.2,10.4
