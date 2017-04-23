@@ -1,17 +1,17 @@
 function [ output ] = formatOutput( outputData )
-%FORMATOUTPUT gets the wine rating and formats it to how we want the data
+%FORMATOUTPUT gets the wine color and formats it to how we want the data
 %to look like
 %   returns formated output
 
-outputData = outputData- min(outputData)+1; % between 1-7
+outputData = outputData+1; % between 1-2
 
-ouputSize = max(outputData) - min(outputData) +1; % 3 minimum rating, 9 max rating
+ouputSize = 2; % 2 colors of wine
 
 %% format output
 
 output = zeros(size(outputData,1),ouputSize);
 for x=1:ouputSize
-    tempMat = outputData - x; % zeros in the index that corresponds to the output rating 3 will have 0 in index 1
+    tempMat = outputData - x; % zeros in the index that corresponds to the output rating 2 will have 0 in index 1
     output(:,x) = tempMat;
 end
 output = (output*10) +1;

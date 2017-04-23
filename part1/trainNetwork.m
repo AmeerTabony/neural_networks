@@ -25,7 +25,7 @@ function [ network ] = trainNetwork( trainingData, trainingOutputs, layerSizes, 
         trainingError = floor(1000*(trainingError/size(trainingOutputs,1)))/10.0;
         logstr = strcat('epoch num: ',num2str(j),' training error is: ',num2str(trainingError) );
         logstr = strcat(logstr,'%%  learning rate: ',num2str(trainingOpts.learningRate));
-        %sprintf(logstr)
+        sprintf(logstr)
         if j~=0 && mod(j,trainingOpts.learningDropRate) ==0
             trainingOpts.learningRate = trainingOpts.learningRate*trainingOpts.learningDecreaseRate;
         end

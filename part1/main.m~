@@ -10,33 +10,30 @@ avgSR = 0;
 tic
 
 avgSR = 0;
-for fold=1:10
+for fold=1:1
 %     diary(strcat(path,'/myTextLog4.txt'));
     tic
     
-    [train,test] = splitData(shuffledWines,FOLDS,fold);
+    [train,test] = splitData(shuffledWines,FOLDS,1);
+    trainingData = 
     train(:,2:end) = normr(train(:,2:end)); 
     test(:,2:end) = normr(test(:,2:end));
-    
-    trainingData = train(:,2:end);
-    testingData = test(:,2:end);
-    
+
     trainOutput = formatOutput(train(:,1));
-    testOutput = formatOutput(test(:,1));
     ouputSize = size(trainOutput,2);
 
-    layerSizes = [12,4,ouputSize]; % assuming only 7 classes, unsure*
+    layerSizes = [12,ouputSize]; % assuming only 7 classes, unsure*
 
     trainingOpts.learningRate = 0.9;
-    trainingOpts.numOfEpochs = 80;
+    trainingOpts.numOfEpochs = 40;
     trainingOpts.learningDecreaseRate = 0.9;
     trainingOpts.learningDropRate = 4;
 
-    network = trainNetwork( trainingData, trainOutput, layerSizes, trainingOpts );
+    network = trainNetwork( train(:,1:end-1), trainOutput, layerSizes, trainingOpts );
     toc
 
-    
-    sr = testNetwork(network, testingData, testOutput) ;
+    testOutput = formatOutput(test(:,end));
+    sr = testNetwork(network, test(:,1:end-1), testOutput) ;
 
     logstr = strcat('Fold num: ',num2str(fold),' success rate: ',num2str(sr),'%%');
     sprintf(logstr)
@@ -44,8 +41,8 @@ for fold=1:10
     avgSR = avgSR + sr;
 %     diary('off');
 end
-logstr = strcat('END of all validations. average success rate: ',num2str(avgSR/FOLDS),'%%');
- sprintf(logstr)
+%logstr = strcat('END of all validations. average success rate: ',num2str(avgSR/FOLDS),'%%');
+% sprintf(logstr)
                    
 toc
 

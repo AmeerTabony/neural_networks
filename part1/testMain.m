@@ -8,11 +8,15 @@ shuffledWines = getShuffledWines();
 avgSR = 0;
 tic
 
-[train,test] = splitData(shuffledWines,FOLDS,1);
-train(:,1:end-1) = normr(train(:,1:end-1)); 
-test(:,1:end-1) = normr(test(:,1:end-1));
+[train,test] = splitData(shuffledWines,FOLDS,fold);
+train(:,2:end) = normr(train(:,2:end)); 
+test(:,2:end) = normr(test(:,2:end));
 
-trainOutput = formatOutput(train(:,end));
+trainingData = train(:,2:end);
+testingData = test(:,2:end);
+
+trainOutput = formatOutput(train(:,1));
+testOutput = formatOutput(test(:,1));
 ouputSize = size(trainOutput,2);
 toc
 for layerSize=4:7
@@ -34,11 +38,10 @@ for layerSize=4:7
                         trainingOpts.learningDecreaseRate = ldr*0.2+0.1;
                         trainingOpts.learningDropRate = dropRate;
 
-                        network = trainNetwork( train(:,1:end-1), trainOutput, layerSizes, trainingOpts );
+                        network = trainNetwork( trainingData(:,1:end-1), trainOutput, layerSizes, trainingOpts );
                         toc
 
-                        testOutput = formatOutput(test(:,end));
-                        sr = testNetwork(network, test(:,1:end-1), testOutput) ;
+                        sr = testNetwork(network, testingData(:,1:end-1), testOutput) ;
 
                         logstr = strcat('Fold num: ',num2str(fold),' success rate: ',num2str(sr),'%%');
                         sprintf(logstr)
