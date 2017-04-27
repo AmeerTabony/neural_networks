@@ -1,16 +1,16 @@
-function [ output ] = formatOutput( outputData )
+function [ output ] = formatOutput( outputData, outputSize )
 %FORMATOUTPUT gets the wine color and formats it to how we want the data
 %to look like
 %   returns formated output
 
 outputData = outputData+1; % between 1-2
 
-ouputSize = 2; % 2 colors of wine
+% outputSize = 2; % 2 colors of wine
 
 %% format output
 
-output = zeros(size(outputData,1),ouputSize);
-for x=1:ouputSize
+output = zeros(size(outputData,1),outputSize);
+for x=1:outputSize
     tempMat = outputData - x; % zeros in the index that corresponds to the output rating 2 will have 0 in index 1
     output(:,x) = tempMat;
 end

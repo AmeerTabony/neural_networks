@@ -1,4 +1,4 @@
-function [ network ] = trainNetwork( trainingData, trainingOutputs, layerSizes, trainingOpts )
+function [ network, trainingError ] = trainNetwork( trainingData, trainingOutputs, layerSizes, trainingOpts )
 %TRAINNETWORK trains a network on the trainingData
 %   trains a neural net with backpropagation on the input data
 %   trainingOutputs is the expected outputs to the training data

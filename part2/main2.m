@@ -1,0 +1,48 @@
+FOLDS = 4;
+if ~exist('shuffledData', 'var')
+    shuffledData = loopFolders();
+end
+avgSR = 0;
+tic
+path = '/Users/hilldi/Desktop/uni/Neuro computations/hw1/hw1/part2';
+avgSR = 0;
+for fold=1:FOLDS
+%     diary(strcat(path,'/myTextLog4.txt'));
+    
+    [train,test] = splitData(shuffledData,FOLDS,fold);
+    train(:,2:end) = normr(train(:,2:end)); 
+    test(:,2:end) = normr(test(:,2:end));
+    
+    trainingData = train(:,2:end);
+    testingData = test(:,2:end);
+    
+    ouputSize = 8;
+    trainOutput = formatOutput(train(:,1),ouputSize);
+    testOutput = formatOutput(test(:,1),ouputSize);
+
+    layerSizes = [16*16,10,ouputSize];
+    % 0.99,200,0.9,19 te27 sr56%
+    % 50 hidden was NOT good
+    % 20 70%
+    trainingOpts.learningRate = 0.9;
+    trainingOpts.numOfEpochs = 60;
+    trainingOpts.learningDecreaseRate = 0.9;
+    trainingOpts.learningDropRate = 10;
+
+    network = trainNetwork( trainingData, trainOutput, layerSizes, trainingOpts );
+    toc
+
+    
+    sr = testNetwork(network, testingData, testOutput) ;
+
+    logstr = strcat('Fold num: ',num2str(fold),' success rate: ',num2str(sr),'%%');
+    sprintf(logstr)
+
+    avgSR = avgSR + sr;
+%     diary('off');
+end
+logstr = strcat('END of all validations. average success rate: ',num2str(avgSR/FOLDS),'%%');
+ sprintf(logstr)
+                   
+
+% diary('off');
