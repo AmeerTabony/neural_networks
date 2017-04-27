@@ -3,7 +3,7 @@ function expandData(dat,path)
 % path will be without the .txt so that we will append to the file name
 % save data to path
     doSomeShifts(dat,path)
-    for i=1:10
+    for i=1:5
         noisyData = flipBits(dat,0.01*i);
         saveData(noisyData,strcat(path,'-fliped-',num2str(i),'-1.txt'))
         doSomeShifts(noisyData,path)
@@ -17,7 +17,7 @@ end
 
 function doSomeShifts(data, path)
 % shifts mat if the coloum is not zero and saves
-    for i=1:7
+    for i=1:3
         if isempty(find(data(:,i)~=0))
             temp =circshift(data,-i,2);
             saveData(temp,strcat(path,'-trans',num2str(i),'-l','.txt'))
@@ -26,7 +26,7 @@ function doSomeShifts(data, path)
         end
     end
     
-    for i=1:7
+    for i=1:3
         if isempty(find(data(:,end-i+1)~=0))
             temp =circshift(data,i,2);
             saveData(temp,strcat(path,'-trans',num2str(i),'-r','.txt'))
@@ -35,7 +35,7 @@ function doSomeShifts(data, path)
         end
     end
     
-    for i=1:4
+    for i=1:2
         if isempty(find(data(end-i+1,:)~=0) & isempty(find(data(:,end-i+1)~=0)))
             temp =circshift(data,[1 1]);
             saveData(temp,strcat(path,'-trans',num2str(i),'-dr','.txt'))
@@ -44,7 +44,7 @@ function doSomeShifts(data, path)
         end
     end
     
-    for i=1:4
+    for i=1:2
         if isempty(find(data(end-i+1,:)~=0) & isempty(find(data(:,i)~=0)))
             temp =circshift(data,[1 -1]);
             saveData(temp,strcat(path,'-trans',num2str(i),'-dl','.txt'))
@@ -53,7 +53,7 @@ function doSomeShifts(data, path)
         end
     end
     
-    for i=1:4
+    for i=1:2
         if isempty(find(data(i,:)~=0) & isempty(find(data(:,i)~=0)))
             temp =circshift(data,[-1 -1]);
             saveData(temp,strcat(path,'-trans',num2str(i),'-ul','.txt'))
@@ -62,7 +62,7 @@ function doSomeShifts(data, path)
         end
     end
     
-    for i=1:4
+    for i=1:2
         if isempty(find(data(i,:)~=0) & isempty(find(data(:,end-i+1)~=0)))
             temp =circshift(data,[-1 1]);
             saveData(temp,strcat(path,'-trans',num2str(i),'-ur','.txt'))

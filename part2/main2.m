@@ -1,14 +1,12 @@
 FOLDS = 4;
+load('shuffledLetters2.mat')
 if ~exist('shuffledData', 'var')
     shuffledData = loopFolders();
 end
-avgSR = 0;
+avgSR = [];
+avgTE=0;
 tic
-path = '/Users/hilldi/Desktop/uni/Neuro computations/hw1/hw1/part2';
-avgSR = 0;
-for fold=1:FOLDS
-%     diary(strcat(path,'/myTextLog4.txt'));
-    
+for fold=1:FOLDS    
     [train,test] = splitData(shuffledData,FOLDS,fold);
     train(:,2:end) = normr(train(:,2:end)); 
     test(:,2:end) = normr(test(:,2:end));
@@ -20,16 +18,13 @@ for fold=1:FOLDS
     trainOutput = formatOutput(train(:,1),ouputSize);
     testOutput = formatOutput(test(:,1),ouputSize);
 
-    layerSizes = [16*16,10,ouputSize];
-    % 0.99,200,0.9,19 te27 sr56%
-    % 50 hidden was NOT good
-    % 20 70%
+    layerSizes = [16*16,30,ouputSize];
     trainingOpts.learningRate = 0.9;
-    trainingOpts.numOfEpochs = 60;
+    trainingOpts.numOfEpochs = 120;
     trainingOpts.learningDecreaseRate = 0.9;
-    trainingOpts.learningDropRate = 10;
+    trainingOpts.learningDropRate = 12;
 
-    network = trainNetwork( trainingData, trainOutput, layerSizes, trainingOpts );
+    [network,trainingError] = trainNetwork( trainingData, trainOutput, layerSizes, trainingOpts );
     toc
 
     
@@ -38,11 +33,11 @@ for fold=1:FOLDS
     logstr = strcat('Fold num: ',num2str(fold),' success rate: ',num2str(sr),'%%');
     sprintf(logstr)
 
-    avgSR = avgSR + sr;
-%     diary('off');
+    avgSR = [avgSR ,sr];
+    avgTE = avgTE + trainingError;
 end
-logstr = strcat('END of all validations. average success rate: ',num2str(avgSR/FOLDS),'%%');
- sprintf(logstr)
+logstr = strcat('END of all validations. average success rate: ',num2str(mean(avgSR)),'%%');
+logstr = strcat(logstr,'\nstd:', num2str(std(avgSR)),'\naverage training error: ' ,num2str(avgTE/FOLDS));
+sprintf(logstr)
                    
 
-% diary('off');

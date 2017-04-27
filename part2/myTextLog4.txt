@@ -1,0 +1,65 @@
+Elapsed time is 62.997645 seconds.
+ans =
+Fold num:1 success rate:58.5%
+trainingError =
+                      25.3
+Elapsed time is 118.650307 seconds.
+ans =
+Fold num:2 success rate:59.2%
+trainingError =
+                      24.6
+Elapsed time is 174.418068 seconds.
+ans =
+Fold num:3 success rate:58.9%
+trainingError =
+                      24.6
+Elapsed time is 230.317793 seconds.
+ans =
+Fold num:4 success rate:55.1%
+trainingError =
+                      24.9
+Elapsed time is 27.987548 seconds.
+ans =
+Fold num:1 success rate:58%
+trainingError =
+    26
+Elapsed time is 56.050460 seconds.
+ans =
+Fold num:2 success rate:59.8%
+trainingError =
+                      25.5
+Elapsed time is 88.277750 seconds.
+ans =
+Fold num:3 success rate:58.4%
+trainingError =
+                      25.3
+Elapsed time is 123.335900 seconds.
+ans =
+Fold num:4 success rate:53.6%
+trainingError =
+                      25.9
+Elapsed time is 46.377476 seconds.
+ans =
+Fold num:1 success rate:58%
+trainingError =
+                      25.5
+Elapsed time is 94.244865 seconds.
+ans =
+Fold num:2 success rate:59.1%
+trainingError =
+                      25.2
+Elapsed time is 143.008279 seconds.
+ans =
+Fold num:3 success rate:57.6%
+trainingError =
+                      24.9
+Elapsed time is 190.006011 seconds.
+ans =
+Fold num:4 success rate:53.5%
+trainingError =
+                      25.3
+Elapsed time is 60.093402 seconds.
+ans =
+Fold num:1 success rate:58.1%
+trainingError =
+                      25.1

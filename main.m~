@@ -1,0 +1,25 @@
+%% 312163454 034639294
+prompt = 'Hello, this is the project of Hilal and Amir';
+promt2 = '\nFor part 1A, no hidden layers, press 1a';
+promt3 = '\nFor part 1B, 1 hidden layer press 1b';
+promt4 = '\nFor part 1C, 2 hidden layers press 1c';
+promt5 = '\nFor part 2, 1 hidden layer press 2';
+x = input(strcat(prompt,prompt2,prompt3,prompt4,prompt5));
+
+if x== '2'
+    main2
+elseif x=='1a'
+    netParams = [0.9,80,8,0.7];
+    layerSizes = [12,ouputSize];
+    main1
+elseif x=='1b'
+    netParams = [0.9,80,8,0.7];
+    layerSizes = [12,6,ouputSize];
+    main1
+elseif x=='1c'
+    netParams = [0.9,120,8,0.9];
+    layerSizes = [12,7,ouputSize];
+    main1
+else
+    main1
+end

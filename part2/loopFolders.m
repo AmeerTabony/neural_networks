@@ -1,6 +1,6 @@
 function suffeledData = loopFolders()
 % Get a list of all files and folders in this folder.
-files = dir('/Users/hilldi/Desktop/uni/Neuro computations/hw1/hw1/Hebrew_Letters');
+files = dir('Hebrew_Letters');
 files=files(~ismember({files.name},{'.','..'}));
 
 % Get a logical vector that tells which is a directory.
@@ -28,10 +28,10 @@ for k = 1 : length(subFolders)
             for f = 1 : numberOfFiles
                 fullFileName = fullfile(currentFolderName, baseFileNames(f).name);
                 pathOfFile=fullfile(currentFolderPath, baseFileNames(f).name);
-    %             expandData(getLetterAsMat(pathOfFile),pathOfFile(1:end-4));
+%                  expandData(getLetterAsMat(pathOfFile),pathOfFile(1:end-4));
                 matLetter = getLetterAsMat(pathOfFile)';
                 if size(matLetter,1)~= 16 || size(matLetter,2)~= 16
-                    fprintf('oh oh')
+%                     fprintf('oh oh')
                 else
                     arrLetter = reshape(matLetter,[1,16*16]);
                     arrLetter = [letterx,arrLetter];
@@ -41,7 +41,7 @@ for k = 1 : length(subFolders)
     % 			fprintf('     Processing file %s\n', fullFileName);
             end
         else
-            fprintf('     Folder %s has no files in it.\n', currentFolderName);
+%             fprintf('     Folder %s has no files in it.\n', currentFolderName);
         end
 
         
